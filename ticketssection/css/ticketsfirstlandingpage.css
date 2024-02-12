@@ -42,7 +42,7 @@ li a:hover:not(.active) {
     text-decoration: none solid rgb(255, 255, 255); /* white underline */
     text-align: center;
     position: absolute; /* Position absolutely within its container */
-    top: 40%; /* Move the heading down by 50% of its container's height */
+    top: 25%; /* Move the heading down by 50% of its container's height */
     left: 50%; /* Move the heading horizontally by 50% of its container's width */
     transform: translate(-50%, -50%); /* Center the heading both vertically and horizontally */
     z-index: 1; /* Ensure the heading is above the image */
@@ -55,24 +55,41 @@ li a:hover:not(.active) {
     text-decoration: none solid rgb(255, 255, 255); /* white underline */
     text-align: center;
     position: absolute; /* Position absolutely within its container */
-    top: 50%; /* Move the heading down by 50% of its container's height */
+    top: 32%; /* Move the heading down by 50% of its container's height */
     left: 50%; /* Move the heading horizontally by 50% of its container's width */
     transform: translate(-50%, -50%); /* Center the heading both vertically and horizontally */
     z-index: 1; /* Ensure the heading is above the image */
   }
-  .whatson{
-    color: #000000; /* white */
+  .whatson {
+    color: #000000; /* black */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 50px;
     font-style: italic;
-    text-decoration: none solid rgb(0, 0, 0); /* white underline */
+    text-decoration: none solid rgb(0, 0, 0); /* black underline */
     text-align: center;
-    /* Move the heading horizontally by 50% of its container's width 
-    transform: translate(-50%, -50%); /* Center the heading both vertically and horizontally */
-    z-index: 1; /* Ensure the heading is above the image */
-    display: block;
-   
-  }
+    position: relative; /* Needed for absolute positioning */
+}
+.whatson::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust this value to position the line as needed */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000; /* black */
+    animation: moveLine 2s infinite; /* Animation for the moving bar */
+}
+@keyframes moveLine {
+    0% {
+        transform: scaleX(0); /* Start with no width */
+    }
+    50% {
+        transform: scaleX(1); /* Increase width to full */
+    }
+    100% {
+        transform: scaleX(0); /* Reduce width back to none */
+    }
+}
   .teams {
     display: flex;
     flex-direction: row;
@@ -104,5 +121,86 @@ li a:hover:not(.active) {
   }
   .tickettypes img {
      /* Adjust the values to cut the tip */
+     align-self: center;
 
+     transform: skew(-10deg);
+     border: 2px solid #333; /* Border width and color */
+     border-radius: 8px;
+     width: 700px; /* Set the desired width */
+     height: 400px; /* Set the desired height */
+     object-fit: cover; /* Optional: Maintain aspect ratio and cover the container */
+     margin: 5px; 
+     border-radius: 20px; 
+     
+     
   }
+  .container {
+    width: 100%;
+    max-width: 800px; /* Limiting the maximum width for better readability */
+    padding: 20px;
+}
+.table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.table > div {
+    display: table-row;
+}
+.table > div > a,
+.table > div > button {
+    display: table-cell;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+.table > div > button {
+    width: 100%; /* Ensure the button fills the cell */
+    background-color: #ffffff;
+    color: #000000;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.table > div > button:hover {
+    background-color: #fafafa;
+}
+
+
+/* CSS */
+.button-89 {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  color: #fff;
+}
